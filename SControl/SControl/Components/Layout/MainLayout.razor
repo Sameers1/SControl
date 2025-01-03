@@ -5,13 +5,6 @@
 <MudDialogProvider />
 <MudSnackbarProvider />
 <MudLayout>
-    <!-- AppBar Section -->
-    <MudAppBar Elevation="1">
-        <MudText Typo="Typo.h5">Application</MudText>
-        <MudSpacer />
-        <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
-    </MudAppBar>
-
     <!-- Main Content Section -->
     <MudMainContent>
         @Body
@@ -40,12 +33,6 @@
                 LayoutProperties = new LayoutProperties()
             };
     }
-
-    private void DarkModeToggle()
-    {
-        _isDarkMode = !_isDarkMode;
-    }
-
     private readonly PaletteLight _lightPalette = new()
         {
             Primary = "#7e6fff",
@@ -88,10 +75,4 @@
             Divider = "#292838",
             OverlayLight = "#1e1e2d80",
         };
-
-    public string DarkLightModeButtonIcon => _isDarkMode switch
-    {
-        true => Icons.Material.Rounded.AutoMode,
-        false => Icons.Material.Outlined.DarkMode,
-    };
 }

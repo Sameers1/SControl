@@ -1,0 +1,83 @@
+﻿@page "/"
+<PageTitle>Home</PageTitle>
+
+<MudLayout>
+    <MudAppBar Elevation="4">
+        <MudText Typo="Typo.h5">Paragraph Manipulator</MudText>
+        <MudSpacer />
+    </MudAppBar>
+
+    <MudMainContent>
+        <!-- Container for content with padding and centered elements -->
+        <MudContainer MaxWidth="MaxWidth.Large" Class="mt-4" Style="padding-top: 20px;">
+            <MudGrid>
+                <!-- Title Section -->
+                <MudItem xs="12" class="text-center mb-4">
+                    <MudText Typo="Typo.h3" GutterBottom="true">Welcome to the Paragraph Manipulator</MudText>
+                    <MudText Class="mb-4">Transform and analyze your paragraph with just a few clicks.</MudText>
+                </MudItem>
+
+                <!-- Input Section -->
+                <MudItem xs="12" class="mb-4">
+                    <MudTextField @bind-Value="userInput" Label="Enter your paragraph here" Lines="6" Variant="Variant.Filled" Margin="Margin.Dense" FullWidth="true" />
+                </MudItem>
+
+                <!-- Action Buttons Section -->
+                <MudItem xs="12" sm="6" class="mb-4">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" OnClick="TransformToUpperCase">Transform to Uppercase</MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="6" class="mb-4">
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" FullWidth="true" OnClick="ReverseText">Reverse Text</MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="6" class="mb-4">
+                    <MudButton Variant="Variant.Filled" Color="Color.Info" FullWidth="true" OnClick="ShortenText">Shorten Paragraph</MudButton>
+                </MudItem>
+                <MudItem xs="12" sm="6" class="mb-4">
+                    <MudButton Variant="Variant.Filled" Color="Color.Success" FullWidth="true" OnClick="AnalyzeSentiment">Analyze Sentiment</MudButton>
+                </MudItem>
+
+                <!-- Result Section -->
+                <MudItem xs="12" class="mt-4">
+                    <MudText Typo="Typo.h5" GutterBottom="true">Result:</MudText>
+                    <MudText Typo="Typo.body2">@result</MudText>
+                </MudItem>
+            </MudGrid>
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private string userInput = string.Empty;
+    private string result = string.Empty;
+
+    private void TransformToUpperCase()
+    {
+        result = userInput.ToUpper();
+    }
+
+    private void ReverseText()
+    {
+        result = new string(userInput.Reverse().ToArray());
+    }
+
+    private void ShortenText()
+    {
+        result = userInput.Length > 50 ? userInput.Substring(0, 50) + "..." : userInput;
+    }
+
+    private void AnalyzeSentiment()
+    {
+        if (userInput.Contains("happy") || userInput.Contains("joy") || userInput.Contains("good"))
+        {
+            result = "The sentiment seems POSITIVE!";
+        }
+        else if (userInput.Contains("sad") || userInput.Contains("angry") || userInput.Contains("bad"))
+        {
+            result = "The sentiment seems NEGATIVE!";
+        }
+        else
+        {
+            result = "The sentiment is NEUTRAL.";
+        }
+    }
+}

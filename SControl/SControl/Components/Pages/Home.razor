@@ -3,7 +3,7 @@
 
 <MudLayout>
     <MudAppBar Elevation="4">
-        <MudText Typo="Typo.h5">Paragraph Manipulator</MudText>
+        <MudText Typo="Typo.h5" Color="Color.Primary">Paragraph Manipulator</MudText>
         <MudSpacer />
     </MudAppBar>
 
@@ -13,8 +13,8 @@
             <MudGrid>
                 <!-- Title Section -->
                 <MudItem xs="12" class="text-center mb-4">
-                    <MudText Typo="Typo.h3" GutterBottom="true">Welcome to the Paragraph Manipulator</MudText>
-                    <MudText Class="mb-4">Transform and analyze your paragrapha with just a few clicks.</MudText>
+                    <MudText Typo="Typo.h3" GutterBottom="true" Class="text-accent">Welcome to the Paragraph Manipulator</MudText>
+                    <MudText Class="mb-4">Transform and analyze your paragraph with just a few clicks.</MudText>
                 </MudItem>
 
                 <!-- Input Section -->
@@ -23,28 +23,86 @@
                 </MudItem>
 
                 <!-- Action Buttons Section -->
-                <MudItem xs="12" sm="6" class="mb-4">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" OnClick="TransformToUpperCase">Transform to Uppercase</MudButton>
-                </MudItem>
-                <MudItem xs="12" sm="6" class="mb-4">
-                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" FullWidth="true" OnClick="ReverseText">Reverse Text</MudButton>
-                </MudItem>
-                <MudItem xs="12" sm="6" class="mb-4">
-                    <MudButton Variant="Variant.Filled" Color="Color.Info" FullWidth="true" OnClick="ShortenText">Shorten Paragraph</MudButton>
-                </MudItem>
-                <MudItem xs="12" sm="6" class="mb-4">
-                    <MudButton Variant="Variant.Filled" Color="Color.Success" FullWidth="true" OnClick="AnalyzeSentiment">Analyze Sentiment</MudButton>
+                <MudItem xs="12" class="mb-3">
+                    <MudStack Direction="Row" Spacing="2" Justify="Justify.Center">
+                        <MudButton Class="custom-button light-blue" OnClick="TransformToUpperCase">Uppercase</MudButton>
+                        <MudButton Class="custom-button light-green" OnClick="ReverseText">Reverse</MudButton>
+                        <MudButton Class="custom-button light-orange" OnClick="ShortenText">Shorten</MudButton>
+                        <MudButton Class="custom-button light-purple" OnClick="AnalyzeSentiment">Sentiment</MudButton>
+                    </MudStack>
                 </MudItem>
 
                 <!-- Result Section -->
                 <MudItem xs="12" class="mt-4">
-                    <MudText Typo="Typo.h5" GutterBottom="true">Result:</MudText>
+                    <MudText Typo="Typo.h5" GutterBottom="true" Class="text-accent">Result:</MudText>
                     <MudText Typo="Typo.body2">@result</MudText>
                 </MudItem>
             </MudGrid>
         </MudContainer>
     </MudMainContent>
 </MudLayout>
+
+<style>
+    /* General Text Accent */
+    .text-accent {
+        color: #4a5568; /* Subtle grayish-blue for accents */
+    }
+
+    /* Button Styles */
+    .custom-button {
+        width: 140px;
+        height: 40px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: white;
+        border: none;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    /* Color Variations */
+    .light-blue {
+        background-color: #e0f7fa; /* Soft cyan */
+        color: #00796b; /* Teal for contrast */
+    }
+
+        .light-blue:hover {
+            background-color: #b2ebf2;
+        }
+
+    .light-green {
+        background-color: #e8f5e9; /* Light mint green */
+        color: #388e3c; /* Rich green for contrast */
+    }
+
+        .light-green:hover {
+            background-color: #c8e6c9;
+        }
+
+    .light-orange {
+        background-color: #fff3e0; /* Creamy orange */
+        color: #e65100; /* Deep orange for contrast */
+    }
+
+        .light-orange:hover {
+            background-color: #ffe0b2;
+        }
+
+    .light-purple {
+        background-color: #f3e5f5; /* Soft lavender */
+        color: #6a1b9a; /* Dark purple for contrast */
+    }
+
+        .light-purple:hover {
+            background-color: #e1bee7;
+        }
+
+    /* Button Active State */
+    .custom-button:active {
+        box-shadow: none;
+        opacity: 0.9;
+    }
+</style>
 
 @code {
     private string userInput = string.Empty;
